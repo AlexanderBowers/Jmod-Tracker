@@ -14,12 +14,14 @@ export default class Search extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
+        let token = localStorage.getItem("token")
         console.log(`sending fetch for ${this.state.query}`)
         fetch('http://localhost:3000/search', {
             method: "POST",
             headers: {
-              "Content-Type" : "application/json",
-              "Accept" : "application/json"
+                "Authorization": `Bearer ${token}`,
+                "Content-Type" : "application/json",
+                "Accept" : "application/json"
             },
             body: JSON.stringify({
               name: `${this.state.query}`

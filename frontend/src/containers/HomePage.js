@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Search from '../components/Search';
 
 class HomePage extends Component {
 
@@ -37,6 +38,7 @@ class HomePage extends Component {
                 <Container fluid>
                     <h1 align= "center"> Welcome {this.state.user}! </h1> 
                 </Container>
+                <Search />
             </div>
             
         )
