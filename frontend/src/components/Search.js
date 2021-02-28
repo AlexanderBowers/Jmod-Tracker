@@ -5,7 +5,8 @@ import Form from 'react-bootstrap/Form'
 export default class Search extends React.Component {
     state = {
         query: "",
-        id: 0
+        reddit: "",
+        id: 0,
     }
     handleChange = (e) => {
         let query =  e.target.value
@@ -31,15 +32,54 @@ export default class Search extends React.Component {
         .then(res => res.text())
         .then(console.log)
     }
+    //to iterate over twitter response
+    //response comes out as
+    //{data: [{"text": "blah blah", "id": "number_string"}]} 10 objects return inside the array.
+    //to generate link to tweet:
+    //https://twitter.com/${username}/status/${id}
+
+    handleReddit = (e) => {
+        e.preventDefault()
+        let token = localStorage.getItem("token")
+        console.log(`sending reddit request for ${this.state.query}`)
+        fetch('http://localhost:3000/reddit', {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type" : "application/json",
+                "Accept" : "application/json"
+            },
+            body: JSON.stringify({
+              name: `${this.state.query}`
+            })
+
+        })
+        .then(res => res.text())
+        .then(console.log)
+    }
+    //to iterate over reddit response
+    //response comes out as
+    //{data: {children: [{data: {body: text, permalink: text}}, {}, {}]}}
+    //to generate link to comment:
+    //https://reddit.com/${permalink}
 
     render(){
         return (
             <div>
+                Twitter Search
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Control type="text" placeholder="Search" onChange={this.handleChange}/>
                 </Form.Group>
             </Form>
+
+            <br></br>
+                Reddit Search
+                <Form onSubmit={this.handleReddit}>
+                    <Form.Group>
+                        <Form.Control type="text" placeholder="Search" onChange={this.handleChange}/>
+                    </Form.Group>
+                </Form>
             <p>{this.state.query}</p>
             </div>
         )
