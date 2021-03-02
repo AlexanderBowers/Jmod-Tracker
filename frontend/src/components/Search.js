@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import Comment from './Comment'
 
 
 export default class Search extends React.Component {
@@ -7,6 +8,8 @@ export default class Search extends React.Component {
         query: "",
         reddit: "",
         id: 0,
+        comments: [],
+        tweets: []
     }
     handleChange = (e) => {
         let query =  e.target.value
@@ -29,7 +32,7 @@ export default class Search extends React.Component {
             })
 
         })
-        .then(res => res.text())
+        .then(res => res.json())
         .then(console.log)
     }
     //to iterate over twitter response
@@ -37,6 +40,10 @@ export default class Search extends React.Component {
     //{data: [{"text": "blah blah", "id": "number_string"}]} 10 objects return inside the array.
     //to generate link to tweet:
     //https://twitter.com/${username}/status/${id}
+
+
+    //when user doesn't exist, return is:
+    //{errors:{detail: "blah blah blah"}}
 
     handleReddit = (e) => {
         e.preventDefault()
@@ -54,14 +61,20 @@ export default class Search extends React.Component {
             })
 
         })
-        .then(res => res.text())
-        .then(console.log)
+        .then(res => res.json())
+        .then(res => this.setState({
+             comments: res.data.children
+        }
+        ))
     }
     //to iterate over reddit response
     //response comes out as
     //{data: {children: [{data: {body: text, permalink: text}}, {}, {}]}}
     //to generate link to comment:
     //https://reddit.com/${permalink}
+
+
+    //if user isn't found, response is {message: "Not Found"}
 
     render(){
         return (
@@ -81,6 +94,12 @@ export default class Search extends React.Component {
                     </Form.Group>
                 </Form>
             <p>{this.state.query}</p>
+            <div>
+               
+                { this.state.comments.length > 0 ? this.state.comments.map(comment => {
+                     return <Comment body={comment.data.body} permalink={comment.data.permalink}/>
+                }) : null}
+            </div>
             </div>
         )
     }
