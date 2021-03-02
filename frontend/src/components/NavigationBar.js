@@ -21,7 +21,7 @@ const NavigationBar = (props) => {
                 <Nav className="mr-auto">
                   <Nav.Link href="/home"> Home </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>
-                  <Nav.Link href="/search">Search Jmods</Nav.Link>
+                  <Nav.Link href="/jmods">Jmods</Nav.Link>
                 </Nav>
                 <Nav>
                   <Nav.Link href="#" onSelect={logout}> Logout</Nav.Link>
