@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar'
 import {Nav} from 'react-bootstrap'
+import Search from './Search'
 
 const NavigationBar = (props) => {
 
@@ -22,6 +23,7 @@ const NavigationBar = (props) => {
                   <Nav.Link href="/home"> Home </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>
                   <Nav.Link href="/jmods">Jmods</Nav.Link>
+                  <Search></Search>
                 </Nav>
                 <Nav>
                   <Nav.Link href="#" onSelect={logout}> Logout</Nav.Link>

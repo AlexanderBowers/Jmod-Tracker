@@ -9,11 +9,12 @@ export default class Search extends React.Component {
         reddit: "",
         id: 0,
         comments: [],
-        tweets: []
+        tweets: [],
+        jmod: ""
     }
     handleChange = (e) => {
-        let query =  e.target.value
-        this.setState({query})
+        let jmod =  e.target.value
+        this.setState({jmod})
       }
 
     handleSubmit = (e) => {
@@ -72,35 +73,59 @@ export default class Search extends React.Component {
     //{data: {children: [{data: {body: text, permalink: text}}, {}, {}]}}
     //to generate link to comment:
     //https://reddit.com/${permalink}
-
-
     //if user isn't found, response is {message: "Not Found"}
+
+
+    searchMod = (e) => {
+        e.preventDefault()
+        let token = localStorage.getItem("token")
+        fetch('http://localhost:3000/jmods', {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type" : "application/json",
+                "Accept" : "application/json"
+            },
+            body: JSON.stringify({
+                name: `${this.state.jmod}`
+            })
+        })
+        .then(res => res.json())
+        .then(console.log)
+    }
 
     render(){
         return (
-            <div>
-                Twitter Search
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.searchMod}>
+                
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Search" onChange={this.handleChange}/>
+                    <Form.Control type="text" placeholder="Search Jmod" onChange={this.handleChange}/>
                 </Form.Group>
             </Form>
-
-            <br></br>
-                Reddit Search
-                <Form onSubmit={this.handleReddit}>
-                    <Form.Group>
-                        <Form.Control type="text" placeholder="Search" onChange={this.handleChange}/>
-                    </Form.Group>
-                </Form>
-            <p>{this.state.query}</p>
-            <div>
-               
-                { this.state.comments.length > 0 ? this.state.comments.map(comment => {
-                     return <Comment body={comment.data.body} permalink={comment.data.permalink}/>
-                }) : null}
-            </div>
-            </div>
         )
     }
 }
+
+// <div>
+            //     Twitter Search
+            // <Form onSubmit={this.handleSubmit}>
+            //     <Form.Group>
+            //         <Form.Control type="text" placeholder="Search" onChange={this.handleChange}/>
+            //     </Form.Group>
+            // </Form>
+
+            // <br></br>
+            //     Reddit Search
+            //     <Form onSubmit={this.handleReddit}>
+            //         <Form.Group>
+            //             <Form.Control type="text" placeholder="Search" onChange={this.handleChange}/>
+            //         </Form.Group>
+            //     </Form>
+            // <p>{this.state.query}</p>
+            // <div>
+               
+            //     { this.state.comments.length > 0 ? this.state.comments.map(comment => {
+            //          return <Comment body={comment.data.body} permalink={comment.data.permalink}/>
+            //     }) : null}
+            // </div>
+            // </div>
