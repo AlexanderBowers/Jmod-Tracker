@@ -12,10 +12,7 @@ export default class Search extends React.Component {
         tweets: [],
         jmod: ""
     }
-    handleChange = (e) => {
-        let jmod =  e.target.value
-        this.setState({jmod})
-      }
+    
 
     handleSubmit = (e) => {
         e.preventDefault()
@@ -75,31 +72,12 @@ export default class Search extends React.Component {
     //https://reddit.com/${permalink}
     //if user isn't found, response is {message: "Not Found"}
 
-
-    searchMod = (e) => {
-        e.preventDefault()
-        let token = localStorage.getItem("token")
-        fetch('http://localhost:3000/jmods', {
-            method: "POST",
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type" : "application/json",
-                "Accept" : "application/json"
-            },
-            body: JSON.stringify({
-                name: `${this.state.jmod}`
-            })
-        })
-        .then(res => res.json())
-        .then(console.log)
-    }
-
     render(){
         return (
-            <Form onSubmit={this.searchMod}>
+            <Form onSubmit={this.props.searchMod}>
                 
                 <Form.Group>
-                    <Form.Control type="text" placeholder="Search Jmod" onChange={this.handleChange}/>
+                    <Form.Control type="text" placeholder="Search Jmod" onChange={this.props.handleChange}/>
                 </Form.Group>
             </Form>
         )

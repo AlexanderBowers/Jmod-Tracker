@@ -23,7 +23,7 @@ const NavigationBar = (props) => {
                   <Nav.Link href="/home"> Home </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>
                   <Nav.Link href="/jmods">Jmods</Nav.Link>
-                  <Search></Search>
+                  <Search searchMod={props.searchMod} handleChange={props.handleChange}></Search>
                 </Nav>
                 <Nav>
                   <Nav.Link href="#" onSelect={logout}> Logout</Nav.Link>

@@ -4,14 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Search from '../components/Search';
+import Jmod from '../components/Jmod'
 
 class HomePage extends Component {
 
-    state = {
-        playlists: [],
-        videos: []
-    }
-
+   state = {
+       jmod: this.props.jmod
+   }
 
     componentDidMount() {
         let token = localStorage.getItem("token")
@@ -35,10 +34,8 @@ class HomePage extends Component {
     render() {
         return(
             <div>
-                <Container fluid>
-                    <h1 align= "center"> Welcome {this.state.user}! </h1> 
-                </Container>
-                <Search />
+                {this.state.jmod != "" ?
+                <Jmod jmod={this.state.jmod} /> : null}
             </div>
             
         )

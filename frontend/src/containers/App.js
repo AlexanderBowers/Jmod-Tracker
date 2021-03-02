@@ -11,14 +11,39 @@ import HomePage from './HomePage'
 
 class App extends Component {
 
+  state = {
+    jmod: ""
+  }
+
+  handleChange = (e) => {
+    let jmod =  e.target.value
+    this.setState({jmod})
+  }
+
+  searchMod = (e) => {
+    e.preventDefault()
+    let token = localStorage.getItem("token")
+    fetch('http://localhost:3000/jmods', {
+        method: "POST",
+        headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type" : "application/json",
+            "Accept" : "application/json"
+        },
+        body: JSON.stringify({
+            name: `${this.state.jmod}`
+        })
+    })
+    .then(res => res.json())
+    .then(jmod => this.setState({jmod}))
+}
+
 
   componentDidMount() {
   }
 
-  handleUserInfo = (info) => {
-    this.setState({
-      userId: info
-    })
+  handleUserInfo = (userId) => {
+    this.setState({userId})
   }
   
 
@@ -28,10 +53,10 @@ class App extends Component {
       
       <Router>
         <div  >
-          <NavigationBar signOut={this.signOut} />
+          <NavigationBar signOut={this.signOut} searchMod={this.searchMod} handleChange={this.handleChange}/>
           <div>
           <Route exact path='/' render={routerProps => <HomeContainer {...routerProps} handleUserInfo={this.handleUserInfo} />} />
-          <Route exaxt path='/home' render={routerProps => <HomePage {...routerProps} /> } />
+          <Route exaxt path='/home' render={routerProps => <HomePage {...routerProps} jmod={this.state.jmod} /> } />
           </div>
         </div>
       </Router>
