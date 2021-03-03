@@ -1,9 +1,9 @@
 import React, {Component} from 'react'
-import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Search from '../components/Search';
+//import Button from 'react-bootstrap/Button'
+//import Container from 'react-bootstrap/Container';
+//import Row from 'react-bootstrap/Row'
+//import Col from 'react-bootstrap/Col'
+//import Search from '../components/Search';
 import Jmod from '../components/Jmod'
 
 class HomePage extends Component {
@@ -26,16 +26,28 @@ class HomePage extends Component {
             this.setState({
                 user: data.user.username
             })
+        }))
+        .then(fetch(`http://localhost:3000/jmods`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
         })
-    ) : this.props.history.push("/") 
+        .then(res => res.json())
+        .then(jmods => {this.setState({jmods})}))
+     : this.props.history.push("/") 
     }
+
+    
 
 
     render() {
         return(
             <div>
-                {this.props.jmod != "" ?
-                <Jmod jmod={this.props.jmod} /> : null}
+                {this.props.jmod !== "" ?
+                <Jmod jmod={this.props.jmod} /> : this.state.jmods ? this.state.jmods.map(jmod => {
+                    return <React.Fragment> <button className="btn btn-primary" onClick={() => {this.props.activeMod(jmod)}}>{jmod.name}</button></React.Fragment>
+                }) : null }
             </div>
             
         )

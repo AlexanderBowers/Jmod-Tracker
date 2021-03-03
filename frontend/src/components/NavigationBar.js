@@ -1,6 +1,6 @@
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+//import {NavLink} from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar'
 import {Nav} from 'react-bootstrap'
@@ -22,7 +22,6 @@ const NavigationBar = (props) => {
                 <Nav className="mr-auto">
                   <Nav.Link href="/home"> Home </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>
-                  <Nav.Link href="/jmods">Jmods</Nav.Link>
                   <Search searchMod={props.searchMod} handleChange={props.handleChange}></Search>
                 </Nav>
                 <Nav>

@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import Comment from './Comment'
+
 
 
 export default class Search extends React.Component {

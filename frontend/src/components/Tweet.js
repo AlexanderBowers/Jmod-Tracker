@@ -2,10 +2,11 @@ import React from 'react'
 
     const Tweet = (props) => {
             return (
-                <div className="card" width="15%">
+                 <div className="card" width="15%">
+                    <button onClick={() => {console.log(props.jmod)}}>pin</button>
                     <p>{props.tweet.text}</p>
                     <a href={`https://twitter.com/${props.jmod}/status/${props.tweet.id} `}>{`https://twitter.com/${props.jmod}/status/${props.tweet.id}`}</a>
-                </div>
+                 </div>
 
             )
 }
