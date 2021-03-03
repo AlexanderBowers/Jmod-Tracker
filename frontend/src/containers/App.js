@@ -12,12 +12,13 @@ import HomePage from './HomePage'
 class App extends Component {
 
   state = {
-    jmod: ""
+    jmod: "",
+    query: ""
   }
 
   handleChange = (e) => {
-    let jmod =  e.target.value
-    this.setState({jmod})
+    let query =  e.target.value
+    this.setState({query})
   }
 
   searchMod = (e) => {
@@ -31,7 +32,7 @@ class App extends Component {
             "Accept" : "application/json"
         },
         body: JSON.stringify({
-            name: `${this.state.jmod}`
+            name: `${this.state.query}`
         })
     })
     .then(res => res.json())

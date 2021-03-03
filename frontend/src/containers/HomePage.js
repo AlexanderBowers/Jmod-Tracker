@@ -34,8 +34,8 @@ class HomePage extends Component {
     render() {
         return(
             <div>
-                {this.state.jmod != "" ?
-                <Jmod jmod={this.state.jmod} /> : null}
+                {this.props.jmod != "" ?
+                <Jmod jmod={this.props.jmod} /> : null}
             </div>
             
         )
