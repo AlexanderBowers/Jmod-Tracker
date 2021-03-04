@@ -42,3 +42,14 @@
   flex-flow: row wrap;
   align-content: space-around;
 }
+
+.card {
+  display: inline-grid;
+  width: 18.5rem;
+  height: 23.5rem;
+  flex: 0 1 25%;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+

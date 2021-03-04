@@ -72,9 +72,9 @@ class Jmod extends React.Component {
     renderSwitch(state) {
         switch(state) {
             case "reddit":
-                return <CommentContainer comments={this.state.comments}/>
+                return <CommentContainer comments={this.state.comments} jmod={this.props.jmod}/>
             case "twitter":
-                return <TweetContainer tweets={this.state.tweets} jmod={this.props.jmod.name}/>
+                return <TweetContainer tweets={this.state.tweets} jmod={this.props.jmod}/>
             default:
                 return ""
         }

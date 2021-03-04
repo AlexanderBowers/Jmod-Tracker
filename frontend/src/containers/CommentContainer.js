@@ -5,7 +5,7 @@ const CommentContainer = (props) => {
 
     return (<div>
         {props.comments.map (comment => {
-            return <Comment comment={comment} />
+            return <Comment comment={comment} jmod={props.jmod} />
         })}
     </div>)
 }
