@@ -1,6 +1,6 @@
 import React ,{Component} from 'react'
-import CommentContainer from '../containers/CommentContainer'
-import TweetContainer from '../containers/TweetContainer'
+import PinCommentContainer from '../containers/PinCommentContainer'
+import PinTweetContainer from '../containers/PinTweetContainer'
 
 class Profile extends Component {
 
@@ -33,9 +33,9 @@ class Profile extends Component {
     renderSwitch(state) {
         switch(state) {
             case "reddit":
-                return <CommentContainer comments={this.state.comments} jmod={this.props.jmod}/>
+                return <PinCommentContainer comments={this.state.comments}/>
             case "twitter":
-                return <TweetContainer tweets={this.state.tweets} jmod={this.props.jmod}/>
+                return <PinTweetContainer tweets={this.state.tweets}/>
             default:
                 return ""
         }
@@ -43,27 +43,19 @@ class Profile extends Component {
     handleTwitter  (e) {
         e.preventDefault()
             this.setState(prevState => ({
-                active: {
-                    ...prevState.active,
-                    active: "twitter"
-                }
+                active: "twitter"
+
             }))
     }
 
     handleReddit  (e) {
         e.preventDefault()
             this.setState(prevState => ({
-                active: {
-                    ...prevState.active,
-                    active: "reddit"
-                }
+                active: "reddit"
+                
             }))
     }
     
-    
- 
-     
-
      render(){
         return (
             <div>
