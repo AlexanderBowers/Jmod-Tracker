@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, {Component} from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import NavigationBar from '../components/NavigationBar'
-//import Profile from '../components/Profile'
+import Profile from '../components/Profile'
 //import Login from '../components/Login'
 //import Signup from '../components/Signup'
 import HomeContainer from './HomeContainer'
@@ -63,6 +63,7 @@ class App extends Component {
           <div>
           <Route exact path='/' render={routerProps => <HomeContainer {...routerProps} handleUserInfo={this.handleUserInfo} />} />
           <Route exaxt path='/home' render={routerProps => <HomePage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
+          <Route exact path='/profile' render={routerProps => <Profile {...routerProps} /> } />
           </div>
         </div>
       </Router>
