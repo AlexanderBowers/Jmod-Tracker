@@ -13,7 +13,7 @@ import React from 'react'
                 },
                 body: JSON.stringify({
                     body: `${comment.data.body}`,
-                    url: `https://reddit.com/${props.comment.data.permalink}`,
+                    permalink: `${comment.data.permalink}`,
                     jmod_id: `${jmod.id}`    
                 })
             })

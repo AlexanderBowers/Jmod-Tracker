@@ -16,8 +16,8 @@ class Profile extends Component {
         .then(res => res.json())
         .then(data => {
             this.setState({
-                tweets: data.user.tweets,
-                comments: data.user.comments,
+                tweets: data.tweets,
+                comments: data.comments,
                 user: data.user.username
             })
         })
@@ -46,6 +46,16 @@ class Profile extends Component {
                 active: {
                     ...prevState.active,
                     active: "twitter"
+                }
+            }))
+    }
+
+    handleReddit  (e) {
+        e.preventDefault()
+            this.setState(prevState => ({
+                active: {
+                    ...prevState.active,
+                    active: "reddit"
                 }
             }))
     }

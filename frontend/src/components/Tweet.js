@@ -12,8 +12,9 @@ import React from 'react'
                     "Accept" : "application/json"
                 },
                 body: JSON.stringify({
-                    body: `${tweet.text}`,
-                    url: `https://twitter.com/${jmod.name}/status/${tweet.id}`,
+                    text: `${tweet.text}`,
+                    tweet_id: `${tweet.id}`,
+                    jmod_name: `${jmod.name}`,
                     jmod_id: `${jmod.id}`    
                 })
             })
