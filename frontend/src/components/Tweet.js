@@ -27,7 +27,7 @@ import React from 'react'
                     <div className="card">
                         <p>{props.tweet.text}</p>
                         <a href={`https://twitter.com/${props.jmod.name}/status/${props.tweet.id} `}>{`https://twitter.com/${props.jmod.name}/status/${props.tweet.id}`}</a>
-                        <button onClick={() => {createTweet(props.tweet, props.jmod)}} width="15px">pin</button>
+                        <button onClick={() => {createTweet(props.tweet, props.jmod)}}>pin</button>
                     </div>
                 </div>
                  

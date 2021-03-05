@@ -46,7 +46,7 @@ class HomePage extends Component {
             <div>
                 {this.props.jmod !== "" ?
                 <Jmod jmod={this.props.jmod} /> : this.state.jmods ? this.state.jmods.map(jmod => {
-                    return <React.Fragment> <button className="btn btn-primary" onClick={() => {this.props.activeMod(jmod)}}>{jmod.name}</button></React.Fragment>
+                    return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod.name}</button></React.Fragment>
                 }) : null }
             </div>
             

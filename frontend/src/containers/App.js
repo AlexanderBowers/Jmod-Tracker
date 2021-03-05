@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../App.css'
 import React, {Component} from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import NavigationBar from '../components/NavigationBar'
@@ -60,7 +61,7 @@ class App extends Component {
       <Router>
         <div  >
           <NavigationBar signOut={this.signOut} searchMod={this.searchMod} handleChange={this.handleChange}/>
-          <div>
+          <div className="test">
           <Route exact path='/' render={routerProps => <HomeContainer {...routerProps} handleUserInfo={this.handleUserInfo} />} />
           <Route exaxt path='/home' render={routerProps => <HomePage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps} /> } />

@@ -2,6 +2,18 @@
   text-align: center;
 }
 
+html, body {
+  background-image:  url(osrs-background.jpg);
+  background-repeat: repeat-y;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+body {
+  display: block;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -44,12 +56,41 @@
 }
 
 .card {
+  background-image: url(osrs-backdrop.png);
+  background-color: transparent;
+  background-size: cover;
   display: inline-grid;
-  width: 18.5rem;
-  height: 23.5rem;
+  width: 50%;
   flex: 0 1 25%;
   margin-left: 2rem;
   margin-bottom: 1rem;
   margin-top: 2rem;
 }
+
+.card button {
+  background-image: url(osrs-button.png);
+  background-color: transparent;
+  background-size: cover;
+  width: 4rem;
+  height: 3rem;
+  align-items: center; 
+  margin: auto;
+}
+
+.jmod {
+  background-image: url(jmod-button2.png);
+  background-size: cover;
+  width: 15rem;
+  height: 10rem;
+  align-items: center; 
+  color: white;
+  margin-left: 5rem;
+  margin-top: 1rem;
+}
+
+h1 {
+  color: yellow
+}
+
+
 

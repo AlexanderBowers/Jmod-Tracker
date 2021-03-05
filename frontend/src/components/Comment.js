@@ -23,7 +23,7 @@ import React from 'react'
             return (
                 <div className="card" width="15%">
                     <p>{props.comment.data.body}</p>
-                    <a href={`https://reddit.com/${props.comment.data.permalink}`}>https://reddit.com/{props.comment.data.permalink}</a>
+                    <a href={`https://reddit.com${props.comment.data.permalink}`}>https://reddit.com{props.comment.data.permalink}</a>
                     <button onClick={() => {createComment(props.comment, props.jmod)}} width="15px">pin</button>
                 </div>
 
