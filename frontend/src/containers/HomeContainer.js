@@ -40,14 +40,19 @@ class HomeContainer extends Component {
         })
         .then(rsp => rsp.json())
         .then(json => {
-          this.setState({
-              loggedIn: !this.state.loggedIn,
-              user: json.user.username,
-              userId: json.user.id
-          })
-          localStorage.setItem("token", json.jwt)
-          localStorage.setItem("user",json.user.id)
-          this.props.history.push("/home")
+          if (json.user) {
+            this.setState({
+                loggedIn: !this.state.loggedIn,
+                user: json.user.username,
+                userId: json.user.id
+            })
+            localStorage.setItem("token", json.jwt) 
+            localStorage.setItem("user",json.user.id)
+            this.props.history.push("/home")
+         }
+         else{ 
+           this.setState({error: json.message})
+          }
         })
     
       }
@@ -103,7 +108,8 @@ class HomeContainer extends Component {
     render() {
         return(
             <div>
-                {this.loggedIn()}
+              {this.state.error ? <h4>{this.state.error}</h4> : null }
+              {this.loggedIn()}
             </div>
         )
     }

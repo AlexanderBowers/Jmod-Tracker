@@ -5,10 +5,10 @@ import React from 'react'
         
             return (
                 <div className="col-sm-6">
-                    <div className="card" width="15%">
+                    <div className="card">
                         <p>{props.comment.body}</p>
                         <a href={`https://reddit.com/${props.comment.permalink}`}>https://reddit.com/{props.comment.permalink}</a>
-                        <button width="15px">delete</button>
+                        <button>delete</button>
                     </div>
                 </div>
 
