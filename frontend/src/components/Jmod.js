@@ -9,7 +9,7 @@ class Jmod extends React.Component {
         active: ""
     }
 
-     handleReddit (e) {
+    handleReddit (e) {
         e.preventDefault()
         let token = localStorage.getItem("token")
         fetch('http://localhost:3000/reddit', {
@@ -25,11 +25,19 @@ class Jmod extends React.Component {
 
         })
         .then(res => res.json())
-        .then(res => this.setState({
-             comments: res.data.children,
-             active: "reddit"
-        }
-        ))
+        .then(res => {
+            if(res.data) {
+                this.setState({
+                    comments: res.data.children,
+                    active: "reddit"
+                })
+            }   
+            else{
+                this.setState({
+                    error: "This person does not visit Reddit"
+                })
+            } 
+        })
     }
 
      handleTwitter  (e)  {
@@ -48,10 +56,19 @@ class Jmod extends React.Component {
 
         })
         .then(res => res.json())
-        .then(tweets => this.setState({
-            active: "twitter",
-            tweets: tweets.data
-        }))
+        .then(tweets => {
+            if (tweets.data) {
+                this.setState({
+                    active: "twitter",
+                    tweets: tweets.data
+                })
+            }
+            else {
+                this.setState({
+                    error: "This person does not visit Twitter"
+                })
+            }
+        })
     }
     //to iterate over twitter response
     //response comes out as
@@ -83,6 +100,7 @@ class Jmod extends React.Component {
     render(){
     return (
         <div>
+            <h5>{this.state.error ? this.state.error : null}</h5>
         <h1>{this.props.jmod.name}</h1>
         <button className="btn btn-primary" onClick={(e) => {this.handleTwitter(e)}}>Twitter</button> <button className="btn btn-primary" onClick={(e) => {this.handleReddit(e)}}>Reddit</button>
         {this.renderSwitch(this.state.active)}

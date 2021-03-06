@@ -61,13 +61,14 @@ body {
 .card {
   background-image: url(osrs-backdrop.png);
   background-color: transparent;
-  background-size: cover;
+  background-size: contain;
   display: inline-grid;
   width: 100%;
   flex: 0 1 25%;
-  margin-left: 2rem;
-  margin-bottom: 1rem;
-  margin-top: 2rem;
+  margin: 1rem 2rem;
+  padding: 1rem;
+
+  overflow-wrap: break-word;
 }
 
 .card button {
@@ -79,6 +80,7 @@ body {
   align-items: center; 
   margin: auto;
 }
+
 
 .jmod {
   background-image: url(jmod-button2.png);
@@ -99,6 +101,23 @@ h4 {
   color: white;
   margin: auto;
   align-content: center;
+}
+
+h5 {
+  color: white;
+  margin: auto;
+  align-content: center;
+}
+
+
+
+.jHeader {
+  align-items: center;
+  margin-left: 25%;
+}
+
+.Profile {
+  margin-left: 5%;
 }
 
 

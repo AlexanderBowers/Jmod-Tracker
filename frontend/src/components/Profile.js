@@ -58,7 +58,7 @@ class Profile extends Component {
     
      render(){
         return (
-            <div>
+            <div className="Profile">
             <h1>Your Pins</h1>
             <button className="btn btn-primary" onClick={(e) => {this.handleTwitter(e)}}>Twitter</button> <button className="btn btn-primary" onClick={(e) => {this.handleReddit(e)}}>Reddit</button>
             {this.renderSwitch(this.state.active)}
