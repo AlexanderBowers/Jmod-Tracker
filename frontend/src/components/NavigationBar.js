@@ -16,11 +16,11 @@ const NavigationBar = (props) => {
     
     return (
     <div >
-            <Navbar bg="primary" variant="dark" >
+            <Navbar bg="transparent" variant="dark" >
               <Container>
                 <Navbar.Brand >Jmod Tracker</Navbar.Brand>
                 <Nav className="mr-auto">
-                  <Nav.Link href="/home"> Home </Nav.Link>
+                  <Nav.Link href="/home"> Jmods </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>
                   <Search searchMod={props.searchMod} handleChange={props.handleChange}></Search>
                 </Nav>
