@@ -48,11 +48,9 @@ class HomePage extends Component {
                 <Jmod jmod={this.props.jmod} /> : this.state.jmods ? this.state.jmods.map(jmod => {
                     return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod.name}</button></React.Fragment>
                 }) : null }
-            </div>
-            
+            </div>  
         )
     }
-
 }
 
 export default HomePage

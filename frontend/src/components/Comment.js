@@ -21,10 +21,10 @@ import React from 'react'
             .then(console.log())
         }
             return (
-                <div className="card" width="15%">
+                <div className="card">
                     <p>{props.comment.data.body}</p>
                     <a href={`https://reddit.com${props.comment.data.permalink}`}>https://reddit.com{props.comment.data.permalink}</a>
-                    <button onClick={() => {createComment(props.comment, props.jmod)}}>pin</button>
+                    <button className="pin" onClick={() => {createComment(props.comment, props.jmod)}}></button>
                 </div>
 
             )

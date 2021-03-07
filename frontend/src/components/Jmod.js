@@ -29,7 +29,8 @@ class Jmod extends React.Component {
             if(res.data) {
                 this.setState({
                     comments: res.data.children,
-                    active: "reddit"
+                    active: "reddit",
+                    error: ""
                 })
             }   
             else{
@@ -60,7 +61,8 @@ class Jmod extends React.Component {
             if (tweets.data) {
                 this.setState({
                     active: "twitter",
-                    tweets: tweets.data
+                    tweets: tweets.data,
+                    error: ""
                 })
             }
             else {
@@ -99,10 +101,10 @@ class Jmod extends React.Component {
 
     render(){
     return (
-        <div>
+        <div className="JmodPage">
             <h5>{this.state.error ? this.state.error : null}</h5>
         <h1>{this.props.jmod.name}</h1>
-        <button className="btn btn-primary" onClick={(e) => {this.handleTwitter(e)}}>Twitter</button> <button className="btn btn-primary" onClick={(e) => {this.handleReddit(e)}}>Reddit</button>
+        <button className="twitter" onClick={(e) => {this.handleTwitter(e)}}></button> <button className="reddit" onClick={(e) => {this.handleReddit(e)}}></button>
         {this.renderSwitch(this.state.active)}
         </div>
     )

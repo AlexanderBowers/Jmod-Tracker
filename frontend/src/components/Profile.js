@@ -23,6 +23,18 @@ class Profile extends Component {
         })
     ) : this.props.history.push("/") 
     }
+
+    removeTweet = (tweet) => {
+        this.setState(prevState => ({
+            tweets: prevState.tweets.filter(list => list != tweet)
+        }))
+    }
+    
+    removeComment = (comment) => {
+        this.setState(prevState => ({
+            comments: prevState.comments.filter(list => list != comment)
+        }))
+    }
      
 
 
@@ -33,9 +45,9 @@ class Profile extends Component {
     renderSwitch(state) {
         switch(state) {
             case "reddit":
-                return <PinCommentContainer comments={this.state.comments}/>
+                return <PinCommentContainer comments={this.state.comments} removeComment={this.removeComment}/>
             case "twitter":
-                return <PinTweetContainer tweets={this.state.tweets}/>
+                return <PinTweetContainer tweets={this.state.tweets} removeTweet={this.removeTweet}/>
             default:
                 return ""
         }
@@ -60,7 +72,7 @@ class Profile extends Component {
         return (
             <div className="Profile">
             <h1>Your Pins</h1>
-            <button className="btn btn-primary" onClick={(e) => {this.handleTwitter(e)}}>Twitter</button> <button className="btn btn-primary" onClick={(e) => {this.handleReddit(e)}}>Reddit</button>
+            <button className="twitter" onClick={(e) => {this.handleTwitter(e)}}></button> <button className="reddit" onClick={(e) => {this.handleReddit(e)}}></button>
             {this.renderSwitch(this.state.active)}
             </div>
         )

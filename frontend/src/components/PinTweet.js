@@ -2,16 +2,26 @@ import React from 'react'
 
     const PinTweet = (props) => {
 
+        function destroyTweet  (e, tweet)  {
+            e.stopPropagation()
+            let token = localStorage.getItem("token")
+            fetch(`http://localhost:3000/tweets/${tweet.id}`, {
+                method: "DELETE",
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                }
+            })
+            .then(res => res.json())
+            .then(props.removeTweet(tweet))
+        }
 
             return (
-                <div className="col-sm-6">
-                    <div className="card">
-                        <p>{props.tweet.text}</p>
-                        <a href={`https://twitter.com/${props.tweet.jmod_name}/status/${props.tweet.tweet_id} `}>{`https://twitter.com/${props.tweet.jmod_name}/status/${props.tweet.tweet_id}`}</a>
-                        <button>delete</button>
-                    </div>
+                <div className="card">
+                    <p>{props.tweet.text}</p>
+                    <a href={`https://twitter.com/${props.tweet.jmod_name}/status/${props.tweet.tweet_id} `}>{`https://twitter.com/${props.tweet.jmod_name}/status/${props.tweet.tweet_id}`}</a>
+                    <button className="trash" onClick={(e) => {destroyTweet(e, props.tweet)}}></button>
                 </div>
-                 
+                
 
             )
 }

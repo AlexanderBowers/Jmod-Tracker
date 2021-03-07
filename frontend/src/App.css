@@ -58,29 +58,21 @@ body {
   background-image: url(osrs-backdrop.png);
   background-color: transparent;
   background-size: contain;
-  display: inline-grid;
-  width: 100%;
+  
   flex: 0 1 25%;
-  margin: 1rem 2rem;
+  margin: 1rem 5rem;
   padding: 1rem;
 
   overflow-wrap: break-word;
 }
 
-.card button {
-  background-image: url(osrs-button.png);
-  background-color: transparent;
-  background-size: cover;
-  width: 4rem;
-  height: 3rem;
-  align-items: center; 
-  margin: auto;
-}
+
 
 
 .jmod {
   background-image: url(jmod-button2.png);
   background-size: cover;
+  border-radius: 1rem;
   width: 13rem;
   height: 11rem;
   align-items: center; 
@@ -116,5 +108,52 @@ h5 {
   margin-left: 5%;
 }
 
+.JmodPage {
+  margin-left: 10%;
+  width: 80%;
+}
+
+.jmod .comments .card {
+  max-width: inherit;
+}
+
+.twitter {
+  background-image: url(twitter-button.png);
+  background-size: contain;
+  background-color: transparent;
+  width: 4.4rem;
+  height: 3.7rem;
+  border-radius: 1rem;
+}
+.reddit {
+  background-image: url(reddit-button.png);
+  background-size: contain;
+  background-color: transparent;
+  width: 4.4rem;
+  height: 3.7rem;
+  border-radius: 1rem;
+}
+
+.pin {
+  background-image: url(pin-button.png);
+  background-color: transparent;
+  background-size: cover;
+  width: 4.4rem;
+  height: 3.7rem;
+  align-items: center; 
+  margin: auto;
+  border-radius: 1rem;
+}
+
+.trash {
+  background-image: url(trash-button.png);
+  background-color: transparent;
+  background-size: cover;
+  width: 4.4rem;
+  height: 3.7rem;
+  align-items: center; 
+  margin: auto;
+  border-radius: 1rem;
+}
 
 
