@@ -57,7 +57,7 @@ body {
 .card {
   background-image: url(osrs-backdrop.png);
   background-color: transparent;
-  background-size: contain;
+  background-size: 100%;
   
   flex: 0 1 25%;
   margin: 1rem 5rem;
@@ -156,4 +156,27 @@ h5 {
   border-radius: 1rem;
 }
 
+.signup {
+  background-image: url(sign-up.png);
+  background-color: transparent;
+  background-size: cover;
+  width: 9.5rem;
+  height: 8rem;
+}
 
+.signin {
+  background-image: url(sign-in.png);
+  background-color: transparent;
+  background-size: cover;
+  width: 9.5rem;
+  height: 8rem;
+}
+
+.Login-container {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.Login-item {
+  display: grid;
+}

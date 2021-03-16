@@ -28,13 +28,12 @@ class Login extends Component {
                             <Form.Label>Password</Form.Label>
                             <Form.Control name="password" type="password" placeholder="Password" onChange={(e) => this.props.handleLoginChange(e)}/>
                         </Form.Group>
-                        <Button variant="primary" type="button" onClick={(e) => this.props.handleLoginSubmit(e)}>
-                            Login
-                        </Button>
-                        <p>   </p>
-                        <Button variant="success" type="button" onClick={(e) => this.props.toggleLogin(e)}>
-                            I don't have an account Sign Me up
-                        </Button>
+                        <div className="buttons">
+                            <Button variant="primary" type="button" className="signin" onClick={(e) => this.props.handleLoginSubmit(e)}>
+                            </Button>
+                            <Button variant="success" type="button" className="signup" onClick={(e) => this.props.toggleLogin(e)}>
+                            </Button>
+                        </div>
                     </Form>
                     </Container>
                 
