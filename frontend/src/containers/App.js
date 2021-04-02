@@ -4,11 +4,9 @@ import React, {Component} from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import NavigationBar from '../components/NavigationBar'
 import Profile from '../components/Profile'
-//import Login from '../components/Login'
-//import Signup from '../components/Signup'
+import HomePage from '../components/HomePage'
 import HomeContainer from './HomeContainer'
-//import Logout from '../components/Logout'
-import HomePage from './HomePage'
+import JmodPage from './JmodPage'
 
 class App extends Component {
 
@@ -63,7 +61,8 @@ class App extends Component {
           <NavigationBar signOut={this.signOut} searchMod={this.searchMod} handleChange={this.handleChange}/>
           <div className="test">
           <Route exact path='/' render={routerProps => <HomeContainer {...routerProps} handleUserInfo={this.handleUserInfo} />} />
-          <Route exaxt path='/home' render={routerProps => <HomePage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
+          <Route exaxt path='/home' render={routerProps => <HomePage {...routerProps}/>  } />
+          <Route exaxt path='/jmods' render={routerProps => <JmodPage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps} /> } />
           </div>
         </div>

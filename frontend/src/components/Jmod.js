@@ -99,11 +99,16 @@ class Jmod extends React.Component {
         }
     }
 
+    handleFollow(e) {
+        e.preventDefault()
+    }
+
     render(){
     return (
         <div className="JmodPage">
             <h5>{this.state.error ? this.state.error : null}</h5>
         <h1>{this.props.jmod.name}</h1>
+        <button className="button" onClick={(e) => {this.handleFollow(e)}}></button>
         <button className="twitter" onClick={(e) => {this.handleTwitter(e)}}></button> <button className="reddit" onClick={(e) => {this.handleReddit(e)}}></button>
         {this.renderSwitch(this.state.active)}
         </div>
