@@ -35,6 +35,14 @@ class HomePage extends Component {
         })
         .then(res => res.json())
         .then(jmods => {this.setState({jmods})}))
+        .then(fetch(`http://localhost:3000/api/v1/feed`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(res => res.json())
+        .then(feed => {this.setState({feed})}))
      : this.props.history.push("/") 
     }
 
