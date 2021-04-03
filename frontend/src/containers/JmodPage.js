@@ -14,6 +14,10 @@ class HomePage extends Component {
 
     componentDidMount() {
         let token = localStorage.getItem("token")
+        let old_feed = localStorage.getItem("old_feed")
+        if (old_feed === null) {
+            localStorage.setItem("old_feed", JSON.stringify({jagexFiller: {twitter: [], reddit: []}})) 
+        }
         token ? (
         fetch(`http://localhost:3000/api/v1/profile`,{
             method: "GET",
@@ -35,14 +39,20 @@ class HomePage extends Component {
         })
         .then(res => res.json())
         .then(jmods => {this.setState({jmods})}))
-        .then(fetch(`http://localhost:3000/api/v1/feed`, {
-            method: "GET",
+        .then(fetch(`http://localhost:3000/feed`, {
+            method: "POST",
             headers: {
-                Authorization: `Bearer ${token}`
-            }
+                Authorization: `Bearer ${token}`,
+                "Content-Type" : "application/json",
+                "Accept" : "application/json"
+            },
+            body: JSON.stringify({
+                old_feed: old_feed
+              })
         })
         .then(res => res.json())
-        .then(feed => {this.setState({feed})}))
+        .then(feed => {
+            localStorage.setItem("new_feed",JSON.stringify(feed))}))
      : this.props.history.push("/") 
     }
 
