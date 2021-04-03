@@ -48,7 +48,6 @@ class HomeContainer extends Component {
             })
             localStorage.setItem("token", json.jwt) 
             localStorage.setItem("user",json.user.id)
-            localStorage.setItem("feed", [])
             this.props.history.push("/home")
          }
          else{ 
