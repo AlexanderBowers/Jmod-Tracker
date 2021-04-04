@@ -47,45 +47,24 @@ class HomePage extends Component {
         let new_feed = localStorage.getItem('new_feed')
         let old_json = JSON.parse(feed)
         let new_json = JSON.parse(new_feed)
-        let updates = ""
+        let updates = []
         Object.keys(new_json).forEach(function (j) {
             if (old_json[j]) {
-               if (old_json[j]["twitter"] !== new_json[j]["twitter"] && old_json[j]["reddit"] !== new_json[j]["reddit"]) {
+               if (old_json[j]["twitter"] !== new_json[j]["twitter"] && old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length > 0) {
                    updates  +=( `${j}'s twitter and reddit, `)
-                    // let update = `${j}'s twitter and reddit`
-                    // this.setState(prevState => ({       
-                    //     updates: {
-                    //         ...prevState.updates, update
-                    //     }
-                    // }))     
                }
                else if(old_json[j]["twitter"] !== new_json[j]["twitter"]) {
                    updates  +=(`${j}s twitter, `)
-                // let update = `${j}s twitter`
-                // this.setState(prevState => ({       
-                //     updates: {
-                //         ...prevState.updates, update
-                //     }
-                // }))     
                }
                else if(old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length !== 0) {
                     updates  +=(`${j}s reddit, `)
-                // let update = `${j}s reddit`
-                // this.setState(prevState => ({       
-                //     updates: {
-                //         ...prevState.updates, update
-                //     }
-                // }))     
                }
+               else if (old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length === 0) {
+                    updates += ""
+                }
             }
-            else{
+            else {
                     updates  +=(`${j}'s twitter and reddit, `)
-                // let update = `${j}'s twitter and reddit`
-                // this.setState(prevState => ({       
-                //     updates: {
-                //         ...prevState.updates, update
-                //     }
-                // }))  
             }
         })
         localStorage.setItem('updates', updates)
@@ -93,9 +72,21 @@ class HomePage extends Component {
         localStorage.removeItem('new_feed')
     }
 
+    renderUpdates() {
+        let updates = localStorage.getItem('updates')
+        if (updates.length === 0){
+            return (
+            <div className='updates'>
+                 <h4>There are no new updates.</h4>
+            </div>
+            )
+        }
+    }
+
     render() {
         return(
             <div>
+                {this.renderUpdates()}
                 {this.props.jmod !== "" ?
                 <Jmod jmod={this.props.jmod} /> : this.state.jmods ? this.state.jmods.map(jmod => {
                     return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod.name}</button></React.Fragment>
