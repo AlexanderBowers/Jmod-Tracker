@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Jmod from '../components/Jmod'
 
-class JmodPage extends Component {
+class FeedPage extends Component {
 
    state = {
        jmod: this.props.jmod,
@@ -103,18 +103,4 @@ class JmodPage extends Component {
     }
 }
 
-export default JmodPage
-
- //  (
-        // fetch(`http://localhost:3000/api/v1/profile`,{
-        //     method: "GET",
-        //     headers: {
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // })
-        // .then(res => res.json())
-        // .then(data => {
-        //     this.setState({
-        //         user: data.user.username
-        //     })
-        // }))
+export default FeedPage
