@@ -10,12 +10,7 @@ class JmodPage extends Component {
 
     componentDidMount() {
         let token = localStorage.getItem("token")
-        let feed = localStorage.getItem("feed")
-        if (feed === null) {
-            localStorage.setItem("feed", JSON.stringify({jagexFiller: {twitter: [], reddit: []}})) 
-        }
          token ? 
-       
         fetch(`http://localhost:3000/jmods`, {
             method: "GET",
             headers: {
@@ -24,18 +19,6 @@ class JmodPage extends Component {
         })
         .then(res => res.json())
         .then(jmods => {this.setState({jmods})})
-        .then(fetch(`http://localhost:3000/feed`, {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type" : "application/json",
-                "Accept" : "application/json"
-            },
-            body: JSON.stringify({
-                feed: feed
-              })
-        })
-        .then(res => res.json()))
      : this.props.history.push("/") 
     }
 

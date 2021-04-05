@@ -7,6 +7,7 @@ import Profile from '../components/Profile'
 import HomePage from '../components/HomePage'
 import HomeContainer from './HomeContainer'
 import JmodPage from './JmodPage'
+import FeedPage from './FeedPage'
 
 class App extends Component {
 
@@ -63,7 +64,7 @@ class App extends Component {
           <Route exact path='/' render={routerProps => <HomeContainer {...routerProps} handleUserInfo={this.handleUserInfo} />} />
           <Route exact path='/home' render={routerProps => <HomePage {...routerProps}/>  } />
           <Route exact path='/jmods' render={routerProps => <JmodPage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
-          <Route exact path='/feed' reder={routerProps => <JmodPage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
+          <Route exact path='/feed' render={routerProps => <FeedPage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps} /> } />
           </div>
         </div>
