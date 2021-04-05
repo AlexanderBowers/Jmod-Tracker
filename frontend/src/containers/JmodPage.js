@@ -72,13 +72,20 @@ class HomePage extends Component {
         localStorage.removeItem('new_feed')
     }
 
-    renderUpdates() {
+    renderUpdates() {        
         let updates = localStorage.getItem('updates')
         if (updates.length === 0){
             return (
-            <div className='updates'>
-                 <h4>There are no new updates.</h4>
-            </div>
+                <div className='updates'>
+                    <h4>There are no new updates.</h4>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className='updates'>
+                     <h4>{`There are updates in ${updates.join(', ')}`}</h4>
+                </div>
             )
         }
     }

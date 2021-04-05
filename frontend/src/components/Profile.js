@@ -26,13 +26,13 @@ class Profile extends Component {
 
     removeTweet = (tweet) => {
         this.setState(prevState => ({
-            tweets: prevState.tweets.filter(list => list != tweet)
+            tweets: prevState.tweets.filter(list => list !== tweet)
         }))
     }
     
     removeComment = (comment) => {
         this.setState(prevState => ({
-            comments: prevState.comments.filter(list => list != comment)
+            comments: prevState.comments.filter(list => list !== comment)
         }))
     }
      
