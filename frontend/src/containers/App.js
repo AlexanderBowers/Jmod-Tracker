@@ -61,8 +61,9 @@ class App extends Component {
           <NavigationBar signOut={this.signOut} searchMod={this.searchMod} handleChange={this.handleChange}/>
           <div className="test">
           <Route exact path='/' render={routerProps => <HomeContainer {...routerProps} handleUserInfo={this.handleUserInfo} />} />
-          <Route exaxt path='/home' render={routerProps => <HomePage {...routerProps}/>  } />
-          <Route exaxt path='/jmods' render={routerProps => <JmodPage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
+          <Route exact path='/home' render={routerProps => <HomePage {...routerProps}/>  } />
+          <Route exact path='/jmods' render={routerProps => <JmodPage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
+          <Route exact path='/feed' reder={routerProps => <JmodPage {...routerProps} jmod={this.state.jmod} activeMod={this.activeMod}/>  } />
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps} /> } />
           </div>
         </div>
