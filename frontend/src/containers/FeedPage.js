@@ -23,8 +23,15 @@ class FeedPage extends Component {
             }
         })
         .then(res => res.json())
-        .then(jmods => {this.setState({jmods})})
-        .then(fetch(`http://localhost:3000/feed`, {
+        .then(jmods => {
+            this.setState({jmods})
+            this.getFeed(token, feed)
+        })
+     : this.props.history.push("/") 
+    }
+
+    getFeed(token, feed) {
+        fetch(`http://localhost:3000/feed`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -33,13 +40,13 @@ class FeedPage extends Component {
             },
             body: JSON.stringify({
                 feed: feed
-              })
+            })
         })
         .then(res => res.json())
         .then(feed => {
             localStorage.setItem("new_feed",JSON.stringify(feed))
-            this.checkUpdates()}))
-     : this.props.history.push("/") 
+            this.checkUpdates()}
+        )
     }
 
     checkUpdates() {
@@ -47,17 +54,17 @@ class FeedPage extends Component {
         let new_feed = localStorage.getItem('new_feed')
         let old_json = JSON.parse(feed)
         let new_json = JSON.parse(new_feed)
-        let updates = []
+        let updates = ""
         Object.keys(new_json).forEach(function (j) {
             if (old_json[j]) {
                if (old_json[j]["twitter"] !== new_json[j]["twitter"] && old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length > 0) {
                    updates  +=( `${j}'s twitter and reddit, `)
                }
                else if(old_json[j]["twitter"] !== new_json[j]["twitter"]) {
-                   updates  +=(`${j}s twitter, `)
+                   updates  +=(`${j}'s twitter, `)
                }
                else if(old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length !== 0) {
-                    updates  +=(`${j}s reddit, `)
+                    updates  +=(`${j}'s reddit, `)
                }
                else if (old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length === 0) {
                     updates += ""
@@ -84,7 +91,7 @@ class FeedPage extends Component {
         else {
             return (
                 <div className='updates'>
-                     <h4>{`There are updates in ${updates.join(', ')}`}</h4>
+                     <h4>{`There are updates in ${updates}`}</h4>
                 </div>
             )
         }
