@@ -60,7 +60,7 @@ class HomeContainer extends Component {
       loggedIn = () => {
         let token = localStorage.getItem("token")
           if (token) {
-               <Redirect to="/home" />
+               return <Redirect to="/home" />
           } else {
               if (this.state.signup) {
                   return <Signup toggleLogin={this.toggleLogin}  handleLoginChange={this.handleLoginChange} handleSignupSubmit={this.handleSignupSubmit}/>

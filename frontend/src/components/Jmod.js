@@ -26,7 +26,7 @@ class Jmod extends React.Component {
         })
         .then(res => res.json())
         .then(res => {
-            if(res.data) {
+            if(res.data && res.data.children.length > 0) {
                 this.setState({
                     comments: res.data.children,
                     active: "reddit",
@@ -35,7 +35,7 @@ class Jmod extends React.Component {
             }   
             else{
                 this.setState({
-                    error: "This person does not visit Reddit"
+                    error: "This person does not comment on Reddit"
                 })
             } 
         })
@@ -72,6 +72,8 @@ class Jmod extends React.Component {
             }
         })
     }
+
+    
     //to iterate over twitter response
     //response comes out as
     //{data: [{"text": "blah blah", "id": "number_string"}]} 10 objects return inside the array.
@@ -98,17 +100,43 @@ class Jmod extends React.Component {
                 return ""
         }
     }
-
+    
+    //handleFollow allows a user to click a button to follow/unfollow a Jmod by adding/removing jmod's name to local storage
     handleFollow(e) {
-        e.preventDefault()
+        let follows = localStorage.getItem('follows')
+        if (follows){      
+         } 
+         else {
+             localStorage.setItem('follows', '')
+              follows = localStorage.getItem('follows')
+         }  
+            if (follows.length > 0) {
+                follows = JSON.parse(follows)
+                
+                if (follows.find(jmod => jmod===`${this.props.jmod.name}`)){ 
+                    //remove the index of follows where jmod's name is located, stringify, then set to local storage
+                    let index = follows.findIndex(jmod => jmod===`${this.props.jmod.name}`)
+                    follows.splice(index, 1)
+                    localStorage.setItem('follows', JSON.stringify(follows))
+                }
+                else {     
+                     follows.push(this.props.jmod.name)
+                     localStorage.setItem('follows', JSON.stringify(follows))
+                }
+            }
+            else {
+                follows = [`${this.props.jmod.name}`]
+                    localStorage.setItem('follows', JSON.stringify(follows))
+            }
     }
 
     render(){
     return (
+        
         <div className="JmodPage">
             <h5>{this.state.error ? this.state.error : null}</h5>
         <h1>{this.props.jmod.name}</h1>
-        <button className="button" onClick={(e) => {this.handleFollow(e)}}></button>
+        <button className="follow" onClick={(e) => {this.handleFollow(e)}}></button>
         <button className="twitter" onClick={(e) => {this.handleTwitter(e)}}></button> <button className="reddit" onClick={(e) => {this.handleReddit(e)}}></button>
         {this.renderSwitch(this.state.active)}
         </div>
