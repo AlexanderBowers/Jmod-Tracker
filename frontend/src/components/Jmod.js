@@ -109,9 +109,9 @@ class Jmod extends React.Component {
             if (follows.length > 0) {
                 follows = JSON.parse(follows)
                 
-                if (follows.find(jmod => jmod===`${this.props.jmod.name}`)){ 
+                if (follows.find(jmod => jmod['name']===`${this.props.jmod['name']}`)){ 
                     //remove the index of follows where jmod's name is located, stringify, then set to local storage
-                    let index = follows.findIndex(jmod => jmod===`${this.props.jmod.name}`)
+                    let index = follows.findIndex(jmod => jmod.name===`${this.props.jmod.name}`)
                     follows.splice(index, 1)
                     localStorage.setItem('follows', JSON.stringify(follows))
                     this.setState(prevState => ({
@@ -119,7 +119,7 @@ class Jmod extends React.Component {
                     }))
                 }
                 else {     
-                     follows.push(this.props.jmod.name)
+                     follows.push(this.props.jmod)
                      localStorage.setItem('follows', JSON.stringify(follows))
                      this.setState(prevState => ({
                         error: `Now following ${this.props.jmod.name}`
@@ -128,8 +128,11 @@ class Jmod extends React.Component {
                 }
             }
             else {
-                follows = [`${this.props.jmod.name}`]
+                follows = [`${this.props.jmod}`]
                     localStorage.setItem('follows', JSON.stringify(follows))
+                    this.setState(prevState => ({
+                        error: `Now following ${this.props.jmod.name}`
+                    }))
             }
     }
 

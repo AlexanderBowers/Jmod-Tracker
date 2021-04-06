@@ -5,7 +5,7 @@ import {Button} from 'react-bootstrap'
 class Logout extends Component {
 
     logout = ()  => {
-        localStorage.clear("token");
+        localStorage.removeItem("token");
         window.location.href = '/';
         this.props.logout()
     }
