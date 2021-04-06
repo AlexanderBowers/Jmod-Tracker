@@ -8,7 +8,14 @@ class Jmod extends React.Component {
     state = {
         active: ""
     }
-
+    //when reddit ser doesn't exist, return is:
+    //{errors:{detail: "blah blah blah"}}
+    //to iterate over reddit response
+    //response comes out as
+    //{data: {children: [{data: {body: text, permalink: text}}, {}, {}]}}
+    //to generate link to comment:
+    //https://reddit.com/${permalink}
+    //if user isn't found, response is {message: "Not Found"}
     handleReddit (e) {
         e.preventDefault()
         let token = localStorage.getItem("token")
@@ -40,7 +47,12 @@ class Jmod extends React.Component {
             } 
         })
     }
-
+     
+    //to iterate over twitter response
+    //response comes out as
+    //{data: [{"text": "blah blah", "id": "number_string"}]} 10 objects return inside the array.
+    //to generate link to tweet:
+    //https://twitter.com/${username}/status/${id}
      handleTwitter  (e)  {
         e.preventDefault()
         let token = localStorage.getItem("token")
@@ -73,23 +85,7 @@ class Jmod extends React.Component {
         })
     }
 
-    
-    //to iterate over twitter response
-    //response comes out as
-    //{data: [{"text": "blah blah", "id": "number_string"}]} 10 objects return inside the array.
-    //to generate link to tweet:
-    //https://twitter.com/${username}/status/${id}
-
-
-    //when user doesn't exist, return is:
-    //{errors:{detail: "blah blah blah"}}
-    //to iterate over reddit response
-    //response comes out as
-    //{data: {children: [{data: {body: text, permalink: text}}, {}, {}]}}
-    //to generate link to comment:
-    //https://reddit.com/${permalink}
-    //if user isn't found, response is {message: "Not Found"}
-
+    //switches between displaying reddit and twitter info
     renderSwitch(state) {
         switch(state) {
             case "reddit":
