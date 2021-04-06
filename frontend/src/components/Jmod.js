@@ -100,7 +100,7 @@ class Jmod extends React.Component {
                 return ""
         }
     }
-    
+
     //handleFollow allows a user to click a button to follow/unfollow a Jmod by adding/removing jmod's name to local storage
     handleFollow(e) {
         let follows = localStorage.getItem('follows')
@@ -118,10 +118,17 @@ class Jmod extends React.Component {
                     let index = follows.findIndex(jmod => jmod===`${this.props.jmod.name}`)
                     follows.splice(index, 1)
                     localStorage.setItem('follows', JSON.stringify(follows))
+                    this.setState(prevState => ({
+                        error: `No longer following ${this.props.jmod.name}`
+                    }))
                 }
                 else {     
                      follows.push(this.props.jmod.name)
                      localStorage.setItem('follows', JSON.stringify(follows))
+                     this.setState(prevState => ({
+                        error: `Now following ${this.props.jmod.name}`
+                    }))
+
                 }
             }
             else {

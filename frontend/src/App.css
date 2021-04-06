@@ -117,6 +117,15 @@ h5 {
   max-width: inherit;
 }
 
+.follow {
+  background-image: url(follow-button.png);
+  background-size: contain;
+  background-color: transparent;
+  width: 4.4rem;
+  height: 3.7rem;
+  border-radius: 1rem;
+}
+
 .twitter {
   background-image: url(twitter-button.png);
   background-size: contain;
