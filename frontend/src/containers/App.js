@@ -13,7 +13,8 @@ class App extends Component {
 
   state = {
     jmod: "",
-    query: ""
+    query: "",
+    follows: []
   }
 
   handleChange = (e) => {
@@ -41,6 +42,12 @@ class App extends Component {
 
 
   componentDidMount() {
+    let follows = localStorage.getItem('follows')
+    if (follows) {
+      this.setState(prevState => ({
+        follows: JSON.parse(follows)
+      }))
+    }
   }
 
   handleUserInfo = (userId) => {
@@ -51,7 +58,7 @@ class App extends Component {
     this.setState({jmod})
 
 }
-  
+
 
 
   render() {

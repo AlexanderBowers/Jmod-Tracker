@@ -27,7 +27,7 @@ class Jmod extends React.Component {
                 "Accept" : "application/json"
             },
             body: JSON.stringify({
-              name: `${this.props.jmod.name}`
+              name: `${this.props.jmod}`
             })
 
         })
@@ -64,7 +64,7 @@ class Jmod extends React.Component {
                 "Accept" : "application/json"
             },
             body: JSON.stringify({
-              name: `${this.props.jmod.name}`
+              name: `${this.props.jmod}`
             })
 
         })
@@ -109,20 +109,20 @@ class Jmod extends React.Component {
             if (follows.length > 0) {
                 follows = JSON.parse(follows)
                 
-                if (follows.find(jmod => jmod['name']===`${this.props.jmod['name']}`)){ 
+                if (follows.find(jmod => jmod===`${this.props.jmod}`)){ 
                     //remove the index of follows where jmod's name is located, stringify, then set to local storage
-                    let index = follows.findIndex(jmod => jmod.name===`${this.props.jmod.name}`)
+                    let index = follows.findIndex(jmod => jmod===this.props.jmod)  
                     follows.splice(index, 1)
                     localStorage.setItem('follows', JSON.stringify(follows))
                     this.setState(prevState => ({
-                        error: `No longer following ${this.props.jmod.name}`
+                        error: `No longer following ${this.props.jmod}`
                     }))
                 }
                 else {     
                      follows.push(this.props.jmod)
                      localStorage.setItem('follows', JSON.stringify(follows))
                      this.setState(prevState => ({
-                        error: `Now following ${this.props.jmod.name}`
+                        error: `Now following ${this.props.jmod}`
                     }))
 
                 }
@@ -131,7 +131,7 @@ class Jmod extends React.Component {
                 follows = [`${this.props.jmod}`]
                     localStorage.setItem('follows', JSON.stringify(follows))
                     this.setState(prevState => ({
-                        error: `Now following ${this.props.jmod.name}`
+                        error: `Now following ${this.props.jmod}`
                     }))
             }
     }
@@ -141,7 +141,7 @@ class Jmod extends React.Component {
         
         <div className="JmodPage">
             <h5>{this.state.error ? this.state.error : null}</h5>
-        <h1>{this.props.jmod.name}</h1>
+        <h1>{this.props.jmod}</h1>
         <button className="follow" onClick={(e) => {this.handleFollow(e)}}></button>
         <button className="twitter" onClick={(e) => {this.handleTwitter(e)}}></button> <button className="reddit" onClick={(e) => {this.handleReddit(e)}}></button>
         {this.renderSwitch(this.state.active)}

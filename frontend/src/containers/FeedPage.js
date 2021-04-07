@@ -5,54 +5,27 @@ class FeedPage extends Component {
 
    state = {
        jmod: this.props.jmod,
-       updates: ""
+       updates: "",
+       follows: JSON.parse(localStorage.getItem('follows'))
    }
 
     componentDidMount() {
         let token = localStorage.getItem("token")
         let feed = localStorage.getItem("feed")
-        let follows = localStorage.getItem("follows")
-        console.log('test')
-        if (follows === null) {
-            follows = []
-        }
+        let jmods = localStorage.getItem('follows')
         if (feed === null) {
             localStorage.setItem("feed", JSON.stringify({jagexFiller: {twitter: [], reddit: []}})) 
         }
-        if (token) {
-            if (follows.length > 2) {
-                fetch(`http://localhost:3000/feed`, {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                      "Content-Type" : "application/json",
-                      "Accept" : "application/json"
-                    },
-                    body: JSON.stringify({
-                      jmods: `${follows}`,
-                      old_feed: `${feed}` 
-                    })
-            })
-            .then(res => res.json())
-            .then(jmods => {
-                this.getFeed(token, feed)
-            })
-
-            }
-            else {
-                console.log('3')
-                this.setState(prevState => ({
-                    error: 'Follow a Jmod to see updates here by clicking on their page.'
-                }))
-            }
-            
+         if (token) {
+            this.getFeed(token, jmods)
+         }
+          
+     else { 
+         this.props.history.push("/")
      } 
-     else {
-        this.props.history.push("/") 
-     }
     }
 
-    getFeed(token, feed) {
+    getFeed(token, jmods) {
         fetch(`http://localhost:3000/feed`, {
             method: "POST",
             headers: {
@@ -61,13 +34,16 @@ class FeedPage extends Component {
                 "Accept" : "application/json"
             },
             body: JSON.stringify({
-                feed: feed
+                jmods: jmods
             })
         })
         .then(res => res.json())
         .then(feed => {
-            localStorage.setItem("new_feed",JSON.stringify(feed))
-            this.checkUpdates()}
+            feed = JSON.stringify(feed)
+            localStorage.setItem("new_feed",feed)
+            this.checkUpdates()
+            this.renderUpdates()
+        }
         )
     }
 
@@ -103,21 +79,32 @@ class FeedPage extends Component {
 
     renderUpdates() {        
         let updates = localStorage.getItem('updates')
-        if (updates){
-            if (updates.length === 0){
-                return (
-                    <div className='updates'>
-                        <h4>There are no new updates.</h4>
-                    </div>
-                )
-            }
-            else {
-                return (
-                    <div className='updates'>
-                        <h4>{`There are updates in ${updates}`}</h4>
-                    </div>
-                )
-            }
+        if (updates.length === 0){
+            return <h4>There are no updates.</h4>
+        }
+        else {
+                let new_updates = `There are updates in ${updates}`
+                return <h4>{new_updates}</h4>
+            
+        }
+        
+    }
+
+    renderJmods(){
+        if (this.props.jmod !== "") {
+            console.log("shouldn't be here")
+            return <Jmod jmod={this.props.jmod} />
+        }
+        else if (this.state.follows && this.state.follows.length > 0) {
+            this.state.follows.map(jmod => {
+                console.log('am i here?')
+                console.log(jmod)
+                 return <React.Fragment><button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
+            })
+        }
+        else {
+            console.log('why am i not here?')
+            return <h4>You're not following any Jmods. Visit their page and press the follow button to receive updates here.</h4>
         }
     }
 
@@ -127,9 +114,9 @@ class FeedPage extends Component {
                 <h5>{this.state.error ? this.state.error : null}</h5>
                 {this.renderUpdates()}
                 {this.props.jmod !== "" ?
-                <Jmod jmod={this.props.jmod} /> :  localStorage.getItem('follows') && localStorage.getItem('follows').length > 2 ? JSON.parse(localStorage.getItem('follows')).map(jmod => {
-                    return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod.name}</button></React.Fragment>
-                }) : null }
+            <Jmod jmod={this.props.jmod} /> : this.state.follows ? this.state.follows.map(jmod => {
+                return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
+            }) : null }
             </div>  
         )
     }
