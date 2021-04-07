@@ -11,26 +11,20 @@ class FeedPage extends Component {
     componentDidMount() {
         let token = localStorage.getItem("token")
         let feed = localStorage.getItem("feed")
+        let jmods = localStorage.getItem('follows')
         if (feed === null) {
             localStorage.setItem("feed", JSON.stringify({jagexFiller: {twitter: [], reddit: []}})) 
         }
-         token ? 
-       
-        fetch(`http://localhost:3000/jmods`, {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        .then(res => res.json())
-        .then(jmods => {
-            this.setState({jmods})
-            this.getFeed(token, feed)
-        })
-     : this.props.history.push("/") 
+         if (token) {
+            this.getFeed(token, jmods)
+         }
+          
+     else { 
+         this.props.history.push("/")
+     } 
     }
 
-    getFeed(token, feed) {
+    getFeed(token, jmods) {
         fetch(`http://localhost:3000/feed`, {
             method: "POST",
             headers: {
@@ -39,19 +33,23 @@ class FeedPage extends Component {
                 "Accept" : "application/json"
             },
             body: JSON.stringify({
-                feed: feed
+                jmods: jmods
             })
         })
         .then(res => res.json())
         .then(feed => {
-            localStorage.setItem("new_feed",JSON.stringify(feed))
-            this.checkUpdates()}
+            feed = JSON.stringify(feed)
+            localStorage.setItem("new_feed",feed)
+            this.checkUpdates()
+        }
         )
     }
 
     checkUpdates() {
         let feed = localStorage.getItem('feed')
+        console.log(`feed is ${feed}`)
         let new_feed = localStorage.getItem('new_feed')
+        console.log(`new_feed is ${new_feed}`)
         let old_json = JSON.parse(feed)
         let new_json = JSON.parse(new_feed)
         let updates = ""
@@ -75,6 +73,9 @@ class FeedPage extends Component {
             }
         })
         localStorage.setItem('updates', updates)
+        console.log(`new_feed is ${new_feed}`)
+        console.log(`new_json is ${new_json}`)
+        console.log(`stringifed, new_)`)
         localStorage.setItem('feed', new_feed)
         localStorage.removeItem('new_feed')
     }
@@ -97,14 +98,28 @@ class FeedPage extends Component {
         }
     }
 
+    renderJmods(){
+        if (this.props.jmod !== "") {
+            console.log("shouldn't be here")
+            return <Jmod jmod={this.props.jmod} />
+        }
+        else if (this.props.follows && this.props.follows.length > 0) {
+            this.props.follows.map(jmod => {
+                console.log('am i here?')
+                console.log(jmod)
+                 return <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button>
+            })
+        }
+        else {
+            console.log('why am i not here?')
+            return <h4>You're not following any Jmods. Visit their page and press the follow button to receive updates here.</h4>
+        }
+    }
+
     render() {
         return(
-            <div>
-                {this.renderUpdates()}
-                {this.props.jmod !== "" ?
-                <Jmod jmod={this.props.jmod} /> : this.state.jmods ? this.state.jmods.map(jmod => {
-                    return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod.name}</button></React.Fragment>
-                }) : null }
+            <div>{this.get}
+                {this.renderJmods()}
             </div>  
         )
     }
