@@ -5,7 +5,8 @@ class FeedPage extends Component {
 
    state = {
        jmod: this.props.jmod,
-       updates: ""
+       updates: "",
+       follows: JSON.parse(localStorage.getItem('follows'))
    }
 
     componentDidMount() {
@@ -41,15 +42,14 @@ class FeedPage extends Component {
             feed = JSON.stringify(feed)
             localStorage.setItem("new_feed",feed)
             this.checkUpdates()
+            this.renderUpdates()
         }
         )
     }
 
     checkUpdates() {
         let feed = localStorage.getItem('feed')
-        console.log(`feed is ${feed}`)
         let new_feed = localStorage.getItem('new_feed')
-        console.log(`new_feed is ${new_feed}`)
         let old_json = JSON.parse(feed)
         let new_json = JSON.parse(new_feed)
         let updates = ""
@@ -73,9 +73,6 @@ class FeedPage extends Component {
             }
         })
         localStorage.setItem('updates', updates)
-        console.log(`new_feed is ${new_feed}`)
-        console.log(`new_json is ${new_json}`)
-        console.log(`stringifed, new_)`)
         localStorage.setItem('feed', new_feed)
         localStorage.removeItem('new_feed')
     }
@@ -83,19 +80,14 @@ class FeedPage extends Component {
     renderUpdates() {        
         let updates = localStorage.getItem('updates')
         if (updates.length === 0){
-            return (
-                <div className='updates'>
-                    <h4>There are no new updates.</h4>
-                </div>
-            )
+            return <h4>There are no updates.</h4>
         }
         else {
-            return (
-                <div className='updates'>
-                     <h4>{`There are updates in ${updates}`}</h4>
-                </div>
-            )
+                let new_updates = `There are updates in ${updates}`
+                return <h4>{new_updates}</h4>
+            
         }
+        
     }
 
     renderJmods(){
@@ -103,11 +95,11 @@ class FeedPage extends Component {
             console.log("shouldn't be here")
             return <Jmod jmod={this.props.jmod} />
         }
-        else if (this.props.follows && this.props.follows.length > 0) {
-            this.props.follows.map(jmod => {
+        else if (this.state.follows && this.state.follows.length > 0) {
+            this.state.follows.map(jmod => {
                 console.log('am i here?')
                 console.log(jmod)
-                 return <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button>
+                 return <React.Fragment><button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
             })
         }
         else {
@@ -118,8 +110,12 @@ class FeedPage extends Component {
 
     render() {
         return(
-            <div>{this.get}
-                {this.renderJmods()}
+            <div>
+                {this.renderUpdates()}
+                {this.props.jmod !== "" ?
+            <Jmod jmod={this.props.jmod} /> : this.state.follows ? this.state.follows.map(jmod => {
+                return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
+            }) : null }
             </div>  
         )
     }

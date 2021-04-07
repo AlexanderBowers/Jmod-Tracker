@@ -9,7 +9,7 @@ import Search from './Search'
 const NavigationBar = (props) => {
 
   const logout = () => {
-    localStorage.clear("token","user")
+    localStorage.removeItem("token","user")
     window.location.href = "/"
   }
 

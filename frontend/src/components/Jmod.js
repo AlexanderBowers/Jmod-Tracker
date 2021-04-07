@@ -111,7 +111,7 @@ class Jmod extends React.Component {
                 
                 if (follows.find(jmod => jmod===`${this.props.jmod}`)){ 
                     //remove the index of follows where jmod's name is located, stringify, then set to local storage
-                    let index = follows.findIndex(jmod => jmod===`${this.props.jmod.name}`)
+                    let index = follows.findIndex(jmod => jmod===this.props.jmod)  
                     follows.splice(index, 1)
                     localStorage.setItem('follows', JSON.stringify(follows))
                     this.setState(prevState => ({
