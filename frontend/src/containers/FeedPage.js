@@ -56,20 +56,20 @@ class FeedPage extends Component {
         Object.keys(new_json).forEach(function (j) {
             if (old_json[j]) {
                if (old_json[j]["twitter"] !== new_json[j]["twitter"] && old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length > 0) {
-                   updates  +=( `${j}'s twitter and reddit, `)
+                   updates  +=( `${j}'s twitter and reddit `)
                }
                else if(old_json[j]["twitter"] !== new_json[j]["twitter"]) {
-                   updates  +=(`${j}'s twitter, `)
+                   updates  +=(`${j}'s twitter `)
                }
                else if(old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length !== 0) {
-                    updates  +=(`${j}'s reddit, `)
+                    updates  +=(`${j}'s reddit `)
                }
                else if (old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length === 0) {
                     updates += ""
                 }
             }
             else {
-                    updates  +=(`${j}'s twitter and reddit, `)
+                    updates  +=(`${j}'s twitter and reddit `)
             }
         })
         localStorage.setItem('updates', updates)
@@ -80,11 +80,12 @@ class FeedPage extends Component {
     renderUpdates() {        
         let updates = localStorage.getItem('updates')
         if (updates.length === 0){
-            return <h4>There are no updates.</h4>
+            return <h3>If this is your first time visiting after leaving the site, refresh this page.
+                        Otherwise, there are no new updates. </h3>
         }
         else {
                 let new_updates = `There are updates in ${updates}`
-                return <h4>{new_updates}</h4>
+                return <h3>{new_updates}</h3>
             
         }
         
