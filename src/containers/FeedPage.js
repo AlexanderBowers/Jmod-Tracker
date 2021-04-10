@@ -10,19 +10,23 @@ class FeedPage extends Component {
    }
 
     componentDidMount() {
+        let updates = localStorage.getItem("updates")
+        if (updates === null) {
+            localStorage.setItem("updates", "")
+        }
         let token = localStorage.getItem("token")
         let feed = localStorage.getItem("feed")
         let jmods = localStorage.getItem('follows')
+        console.log('made it!')
         if (feed === null) {
             localStorage.setItem("feed", JSON.stringify({jagexFiller: {twitter: [], reddit: []}})) 
         }
          if (token) {
             this.getFeed(token, jmods)
          }
-          
-     else { 
-         this.props.history.push("/")
-     } 
+        else { 
+            this.props.history.push("/")
+        } 
     }
 
     getFeed(token, jmods) {
@@ -42,7 +46,7 @@ class FeedPage extends Component {
             feed = JSON.stringify(feed)
             localStorage.setItem("new_feed",feed)
             this.checkUpdates()
-            this.renderUpdates()
+            
         }
         )
     }
@@ -75,6 +79,7 @@ class FeedPage extends Component {
         localStorage.setItem('updates', updates)
         localStorage.setItem('feed', new_feed)
         localStorage.removeItem('new_feed')
+        this.renderUpdates()
     }
 
     renderUpdates() {        
