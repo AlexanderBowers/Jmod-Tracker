@@ -22,7 +22,6 @@ const NavigationBar = (props) => {
                   <Nav.Link href="/jmods"> Jmods </Nav.Link>
                   <Nav.Link href="/feed"> Feed </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>
-                  <Search searchMod={props.searchMod} handleChange={props.handleChange}></Search>
                   <Nav.Link href="#" onSelect={logout}> Logout</Nav.Link>
                 </Nav>
               </Container>

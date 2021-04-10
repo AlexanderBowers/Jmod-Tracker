@@ -189,3 +189,9 @@ h5 {
 .Login-item {
   display: grid;
 }
+
+.jmodList {
+  color: #f5f5f5;
+  margin-left: 10%;
+  margin-right: 10%;
+}

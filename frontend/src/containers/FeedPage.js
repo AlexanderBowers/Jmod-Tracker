@@ -80,8 +80,8 @@ class FeedPage extends Component {
     renderUpdates() {        
         let updates = localStorage.getItem('updates')
         if (updates.length === 0){
-            return <h3>If this is your first time visiting after leaving the site, refresh this page.
-                        Otherwise, there are no new updates. </h3>
+            return <p className="jmodList">If this is your first time visiting after leaving the site, refresh this page.
+                        Otherwise, there are no new updates. </p>
         }
         else {
                 let new_updates = `There are updates in ${updates}`

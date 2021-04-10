@@ -25,8 +25,15 @@ class JmodPage extends Component {
     render() {
         return(
             <div>
+                <p className="jmodList">Jagex Ash: Content developer for OSRS<br></br>
+                    Jagex Ramen: Content developer for RS3<br></br>
+                    Jagex Pi: Senior Gameplay Programmer and Combat Curator for RS3<br></br>
+                    Jagex Shogun: Ninja Team content developer for RS3<br></br>
+                    Jagex Kari: Community Manager for RS3
+                </p>
                 {this.props.jmod !== "" ?
-                <Jmod jmod={this.props.jmod} /> : this.state.jmods ? this.state.jmods.map(jmod => {
+                <Jmod jmod={this.props.jmod} /> : this.state.jmods ?
+                 this.state.jmods.map(jmod => {
                     return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
                 }) : null }
             </div>  
