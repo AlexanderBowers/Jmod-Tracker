@@ -45,11 +45,8 @@ class FeedPage extends Component {
             feed = JSON.stringify(feed)
             localStorage.setItem("new_feed",feed)      
         })
-        .then(feed => {
+        .then(new_feed => {
             this.checkUpdates()
-        })
-        .then(feed => {
-            this.renderUpdates()
         })
     }
 
@@ -87,6 +84,9 @@ class FeedPage extends Component {
 
     renderUpdates() {        
         let updates = localStorage.getItem('updates')
+        if (updates === null) {
+            localStorage.setItem("updates", "")
+        }
         if (updates.length === 0){
             return <p className="jmodList">If this is your first time visiting after leaving the site, refresh this page.
                         Otherwise, there are no new updates. </p>
@@ -117,6 +117,7 @@ class FeedPage extends Component {
         return(
             <div>
                 <h5>{this.state.error ? this.state.error : null}</h5>
+                {this.renderUpdates()}
                 {this.props.jmod !== "" ?
             <Jmod jmod={this.props.jmod} /> : this.state.follows ? this.state.follows.map(jmod => {
                 return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
