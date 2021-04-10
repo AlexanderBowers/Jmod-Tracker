@@ -91,17 +91,16 @@ class HomeContainer extends Component {
           })
         })
         .then(rsp => rsp.json())
-        .then(console.log())
-        // .then(json => {
-        //   this.setState({
-        //     loggedIn: !this.state.loggedIn,
-        //     user: json.user.username,
-        //     userId: json.user.id
-        //   })
-        //   localStorage.setItem("token", json.jwt)
-        //   localStorage.setItem("user",json.user.id)
-        //   this.props.history.push("/home")
-        // })
+        .then(json => {
+          this.setState({
+            loggedIn: !this.state.loggedIn,
+            user: json.user.username,
+            userId: json.user.id
+          })
+          localStorage.setItem("token", json.jwt)
+          localStorage.setItem("user",json.user.id)
+          this.props.history.push("/home")
+        })
       }
 
 
