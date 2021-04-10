@@ -43,10 +43,7 @@ class FeedPage extends Component {
         .then(res => res.json())
         .then(feed => {
             feed = JSON.stringify(feed)
-            localStorage.setItem("new_feed",feed)
-            this.checkUpdates()
-            this.renderUpdates()
-            
+            localStorage.setItem("new_feed",feed)      
         })
         .then(feed => {
             this.checkUpdates()
