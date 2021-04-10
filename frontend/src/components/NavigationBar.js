@@ -19,6 +19,7 @@ const NavigationBar = (props) => {
             <Navbar bg="transparent" variant="dark" >
               <Container className="jHeader">
                 <Nav className="mr-auto">
+                  <Nav.Link href="/"> About</Nav.Link>
                   <Nav.Link href="/jmods"> Jmods </Nav.Link>
                   <Nav.Link href="/feed"> Feed </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>

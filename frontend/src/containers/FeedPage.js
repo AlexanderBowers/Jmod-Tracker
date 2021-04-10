@@ -85,7 +85,7 @@ class FeedPage extends Component {
         }
         else {
                 let new_updates = `There are updates in ${updates}`
-                return <h3>{new_updates}</h3>
+                return <p className="jmodList">{new_updates}</p>
             
         }
         
