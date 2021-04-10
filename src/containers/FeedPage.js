@@ -49,7 +49,8 @@ class FeedPage extends Component {
             
         })
         .then(feed => {
-            this.checkUpdates()})
+            this.checkUpdates()
+        })
         .then(feed => {
             this.renderUpdates()
         })
@@ -61,6 +62,8 @@ class FeedPage extends Component {
         let old_json = JSON.parse(feed)
         let new_json = JSON.parse(new_feed)
         let updates = ""
+        console.log('hi')
+        console.log(new_json)
         Object.keys(new_json).forEach(function (j) {
             if (old_json[j]) {
                if (old_json[j]["twitter"] !== new_json[j]["twitter"] && old_json[j]["reddit"] !== new_json[j]["reddit"] && new_json[j]["reddit"].length > 0) {
