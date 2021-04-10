@@ -15,7 +15,7 @@ import React from 'react'
                     text: `${tweet.text}`,
                     tweet_id: `${tweet.id}`,
                     jmod_name: `${jmod.name}`,
-                    jmod_id: `${jmod.id}`    
+                    jmod: `${jmod}`    
                 })
             })
             .then(res => res.json())

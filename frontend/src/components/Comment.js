@@ -3,6 +3,7 @@ import React from 'react'
     const Comment = (props) => {
 
         function createComment  (comment, jmod)  {
+            console.log('hit here')
             let token = localStorage.getItem("token")
             fetch('http://localhost:3000/comments', {
                 method: "POST",
@@ -14,17 +15,17 @@ import React from 'react'
                 body: JSON.stringify({
                     body: `${comment.data.body}`,
                     permalink: `${comment.data.permalink}`,
-                    jmod_id: `${jmod.id}`    
+                    jmod: `${jmod}`    
                 })
             })
-            .then(res => res.json())
+            .then(res => console.log(res))
             .then(console.log())
         }
             return (
                 <div className="card">
                     <p>{props.comment.data.body}</p>
                     <a href={`https://reddit.com${props.comment.data.permalink}`}>https://reddit.com{props.comment.data.permalink}</a>
-                    <button className="pin" onClick={() => {createComment(props.comment, props.jmod)}}></button>
+                    <button className="pin" onClick={(e) => {createComment(props.comment, props.jmod)}}></button>
                 </div>
 
             )
