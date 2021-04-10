@@ -13,7 +13,7 @@ class Signup extends Component {
     render() {
         return(
             <div className="Login-container">
-                <h5>This website is still in development and is not endorsed by or affiliated with Jagex.<br></br>
+                <h5>Welcome to Jmod Tracker!<br></br>This website is still in development and is not endorsed by or affiliated with Jagex.<br></br>
                     <br></br>DO NOT use your RuneScape password for this site.
                 </h5>
                 <Container>
