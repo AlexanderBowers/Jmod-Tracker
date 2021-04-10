@@ -113,6 +113,7 @@ class FeedPage extends Component {
         return(
             <div>
                 <h5>{this.state.error ? this.state.error : null}</h5>
+                {this.checkUpdates()}
                 {this.props.jmod !== "" ?
             <Jmod jmod={this.props.jmod} /> : this.state.follows ? this.state.follows.map(jmod => {
                 return <React.Fragment> <button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
