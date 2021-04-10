@@ -12,7 +12,7 @@ class Signup extends Component {
 
     render() {
         return(
-            <div>
+            <div className="Login-container">
                 <Container>
                 <Form>
                     <Form.Label> Signup</Form.Label>
@@ -28,12 +28,12 @@ class Signup extends Component {
                         <Form.Label>Password</Form.Label>
                         <Form.Control name="password" type="password" placeholder="Password" onChange={(e) => this.props.handleLoginChange(e)}/>
                     </Form.Group>
-                    <Button variant="primary" type="button" onClick={(e) => this.props.handleSignupSubmit(e)}>
-                        Signup!
+                    <div className="buttons">
+                    <Button variant="success" type="button" className="create" onClick={(e) => this.props.handleSignupSubmit(e)}>
                     </Button>
-                    <Button variant="success" type="button" onClick={(e) => this.props.toggleLogin(e)}>
-                        I already have an account
+                    <Button variant="primary" type="button" className="signin" onClick={(e) => this.props.toggleLogin(e)}>
                     </Button>
+                    </div>
                 </Form>
                 </Container>
                 

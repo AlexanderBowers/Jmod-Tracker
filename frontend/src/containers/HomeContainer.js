@@ -79,35 +79,42 @@ class HomeContainer extends Component {
       handleSignupSubmit = (e) => {
         let username = this.state.username
         let password = this.state.password
-        let info = {username: username, password: password}
-        fetch("http://localhost:3000/api/v1/users/",{
-          method: "POST",
-          headers: {
-            "Content-Type" : "application/json",
-            "Accept" : "application/json"
-          },
-          body: JSON.stringify({
-            user: info
+        if (username && password){
+          let info = {username: username, password: password}
+          fetch("http://localhost:3000/api/v1/users/",{
+            method: "POST",
+            headers: {
+              "Content-Type" : "application/json",
+              "Accept" : "application/json"
+            },
+            body: JSON.stringify({
+              user: info
+            })
           })
-        })
-        .then(rsp => rsp.json())
-        .then(json => {
-          this.setState({
-            loggedIn: !this.state.loggedIn,
-            user: json.user.username,
-            userId: json.user.id
+          .then(rsp => rsp.json())
+          .then(json => {
+            this.setState({
+              loggedIn: !this.state.loggedIn,
+              user: json.user.username,
+              userId: json.user.id
+            })
+            localStorage.setItem("token", json.jwt)
+            localStorage.setItem("user",json.user.id)
+            this.props.history.push("/home")
           })
-          localStorage.setItem("token", json.jwt)
-          localStorage.setItem("user",json.user.id)
-          this.props.history.push("/home")
-        })
+        }
+        else {
+          this.setState(prevState => ({
+            error: 'Please enter a username and password'
+          }))
+        }
       }
 
 
     render() {
         return(
             <div>
-              {this.state.error ? <h4>{this.state.error}</h4> : null }
+              {this.state.error ? <p className="jmodList">{this.state.error}</p> : null }
               {this.loggedIn()}
             </div>
         )
