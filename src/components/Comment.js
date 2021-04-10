@@ -5,7 +5,7 @@ import React from 'react'
         function createComment  (comment, jmod)  {
             console.log('hit here')
             let token = localStorage.getItem("token")
-            fetch('http://localhost:3000/comments', {
+            fetch('https://jmod-tracker.herokuapp.com/comments', {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

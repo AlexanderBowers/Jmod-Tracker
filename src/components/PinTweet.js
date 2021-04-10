@@ -5,7 +5,7 @@ import React from 'react'
         function destroyTweet  (e, tweet)  {
             e.stopPropagation()
             let token = localStorage.getItem("token")
-            fetch(`http://localhost:3000/tweets/${tweet.id}`, {
+            fetch(`https://jmod-tracker.herokuapp.com/tweets/${tweet.id}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,

@@ -5,7 +5,7 @@ import React from 'react'
         function destroyComment  (e, comment)  {
             e.stopPropagation()
             let token = localStorage.getItem("token")
-            fetch(`http://localhost:3000/comments/${comment.id}`, {
+            fetch(`https://jmod-tracker.herokuapp.com/comments/${comment.id}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`,

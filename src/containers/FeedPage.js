@@ -26,7 +26,7 @@ class FeedPage extends Component {
     }
 
     getFeed(token, jmods) {
-        fetch(`http://localhost:3000/feed`, {
+        fetch(`https://jmod-tracker.herokuapp.com/feed`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`,

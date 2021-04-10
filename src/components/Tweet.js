@@ -4,7 +4,7 @@ import React from 'react'
 
        function createTweet  (tweet, jmod)  {
             let token = localStorage.getItem("token")
-            fetch('http://localhost:3000/tweets', {
+            fetch('https://jmod-tracker.herokuapp.com/tweets', {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`,

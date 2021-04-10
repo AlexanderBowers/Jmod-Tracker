@@ -25,7 +25,7 @@ class App extends Component {
   searchMod = (e) => {
     e.preventDefault()
     let token = localStorage.getItem("token")
-    fetch('http://localhost:3000/jmods', {
+    fetch('https://jmod-tracker.herokuapp.com/jmods', {
         method: "POST",
         headers: {
             "Authorization": `Bearer ${token}`,

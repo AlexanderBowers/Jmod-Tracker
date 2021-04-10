@@ -19,7 +19,7 @@ class Jmod extends React.Component {
     handleReddit (e) {
         e.preventDefault()
         let token = localStorage.getItem("token")
-        fetch('http://localhost:3000/reddit', {
+        fetch('https://jmod-tracker.herokuapp.com/reddit', {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -56,7 +56,7 @@ class Jmod extends React.Component {
      handleTwitter  (e)  {
         e.preventDefault()
         let token = localStorage.getItem("token")
-        fetch('http://localhost:3000/search', {
+        fetch('https://jmod-tracker.herokuapp.com/search', {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -64,7 +64,7 @@ class Jmod extends React.Component {
                 "Accept" : "application/json"
             },
             body: JSON.stringify({
-              name: `${this.props.jmod}`
+              name: this.props.jmod
             })
 
         })

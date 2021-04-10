@@ -11,7 +11,7 @@ class JmodPage extends Component {
     componentDidMount() {
         let token = localStorage.getItem("token")
          token ? 
-        fetch(`http://localhost:3000/jmods`, {
+        fetch(`https://jmod-tracker.herokuapp.com/jmods`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`

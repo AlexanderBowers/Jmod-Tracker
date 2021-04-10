@@ -7,7 +7,7 @@ class Profile extends Component {
     componentDidMount() {
         let token = localStorage.getItem("token")
         token ? (
-        fetch(`http://localhost:3000/api/v1/profile`,{
+        fetch(`https://jmod-tracker.herokuapp.com/api/v1/profile`,{
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`

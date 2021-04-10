@@ -28,7 +28,7 @@ class HomeContainer extends Component {
         let username = this.state.username
         let password = this.state.password
         let info = {username: username, password: password}
-        fetch("http://localhost:3000//api/v1/login",{
+        fetch("https://jmod-tracker.herokuapp.com/api/v1/login",{
           method: "POST",
           headers: {
             "Content-Type" : "application/json",
@@ -81,7 +81,7 @@ class HomeContainer extends Component {
         let password = this.state.password
         if (username && password){
           let info = {username: username, password: password}
-          fetch("http://localhost:3000/api/v1/users/",{
+          fetch("https://jmod-tracker.herokuapp.com/api/v1/users/",{
             method: "POST",
             headers: {
               "Content-Type" : "application/json",
@@ -93,10 +93,11 @@ class HomeContainer extends Component {
           })
           .then(rsp => rsp.json())
           .then(json => {
+            console.log(json)
             this.setState({
               loggedIn: !this.state.loggedIn,
-              user: json.user.username,
-              userId: json.user.id
+              // user: json.user.username,
+              // userId: json.user.id
             })
             localStorage.setItem("token", json.jwt)
             localStorage.setItem("user",json.user.id)
