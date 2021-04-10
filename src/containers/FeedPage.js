@@ -17,7 +17,6 @@ class FeedPage extends Component {
         let token = localStorage.getItem("token")
         let feed = localStorage.getItem("feed")
         let jmods = localStorage.getItem('follows')
-        console.log('made it!')
         if (feed === null) {
             localStorage.setItem("feed", JSON.stringify({jagexFiller: {twitter: [], reddit: []}})) 
         }
@@ -46,6 +45,7 @@ class FeedPage extends Component {
             feed = JSON.stringify(feed)
             localStorage.setItem("new_feed",feed)
             this.checkUpdates()
+            this.renderUpdates()
             
         }
         )
@@ -79,7 +79,6 @@ class FeedPage extends Component {
         localStorage.setItem('updates', updates)
         localStorage.setItem('feed', new_feed)
         localStorage.removeItem('new_feed')
-        this.renderUpdates()
     }
 
     renderUpdates() {        
@@ -98,18 +97,14 @@ class FeedPage extends Component {
 
     renderJmods(){
         if (this.props.jmod !== "") {
-            console.log("shouldn't be here")
             return <Jmod jmod={this.props.jmod} />
         }
         else if (this.state.follows && this.state.follows.length > 0) {
             this.state.follows.map(jmod => {
-                console.log('am i here?')
-                console.log(jmod)
                  return <React.Fragment><button className="jmod" onClick={() => {this.props.activeMod(jmod)}}>{jmod}</button></React.Fragment>
             })
         }
         else {
-            console.log('why am i not here?')
             return <h4>You're not following any Jmods. Visit their page and press the follow button to receive updates here.</h4>
         }
     }
