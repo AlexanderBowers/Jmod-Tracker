@@ -10,7 +10,6 @@ class JmodPage extends Component {
 
     componentDidMount() {
         let token = localStorage.getItem("token")
-         token ? 
         fetch(`https://jmod-tracker.herokuapp.com/jmods`, {
             method: "GET",
             headers: {
@@ -19,7 +18,6 @@ class JmodPage extends Component {
         })
         .then(res => res.json())
         .then(jmods => {this.setState({jmods})})
-     : this.props.history.push("/") 
     }
 
     render() {
