@@ -13,11 +13,13 @@ import React from 'react'
             })
             .then(res => res.json())
             .then(props.removeTweet(tweet))
+            .then(console.log(tweet))
         }
 
             return (
                 <div className="card">
                     <p>{props.tweet.text}</p>
+                    
                     <a href={`https://twitter.com/${props.tweet.jmod_name}/status/${props.tweet.tweet_id} `}>{`https://twitter.com/${props.tweet.jmod_name}/status/${props.tweet.tweet_id}`}</a>
                     <button className="trash" onClick={(e) => {destroyTweet(e, props.tweet)}}></button>
                 </div>
