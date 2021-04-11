@@ -13,21 +13,44 @@ const NavigationBar = (props) => {
     window.location.href = "/"
   }
 
-    
-    return (
-    <div >
+  function loggedIn  () {
+    let token = localStorage.getItem("token")
+      if (token) {
+           return(
             <Navbar bg="transparent" variant="dark" >
               <Container className="jHeader">
                 <Nav className="mr-auto">
-                  <Nav.Link href="/"> About</Nav.Link>
-                  <Nav.Link href="/jmods"> Jmods </Nav.Link>
+                  <Nav.Link href="/about"> About</Nav.Link>
+                  <Nav.Link href="/"> Jmods </Nav.Link>
                   <Nav.Link href="/feed"> Feed </Nav.Link>
                   <Nav.Link href="/profile"> My Profile</Nav.Link>
                   <Nav.Link href="#" onSelect={logout}> Logout</Nav.Link>
                 </Nav>
               </Container>
             </Navbar>
-    </div>
+           )
+      } else {
+        return (
+          <Navbar bg="transparent" variant="dark" >
+            <Container className="jHeader">
+              <Nav className="mr-auto">
+                <Nav.Link href="/about"> About</Nav.Link>
+                <Nav.Link href="/"> Jmods </Nav.Link>
+                <Nav.Link href="/feed"> Feed </Nav.Link>
+                <Nav.Link href="/profile"> My Profile</Nav.Link>
+                <Nav.Link href="/login">Login</Nav.Link>
+              </Nav>
+            </Container>
+          </Navbar>
+        )
+      }
+  }
+
+    
+    return (
+      <div>
+        {loggedIn()}
+      </div>
     )
 }
 

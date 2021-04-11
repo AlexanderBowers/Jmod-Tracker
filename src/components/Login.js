@@ -13,9 +13,9 @@ class Login extends Component {
     render() {
         return(
             <div className="Login-container">
-                <h5>Welcome to Jmod Tracker!<br></br>This website is still in development and is not endorsed by or affiliated with Jagex.<br></br>
+                <p className="jmodList">This website is still in development and is not endorsed by or affiliated with Jagex.<br></br>
                     <br></br>DO NOT use your RuneScape password for this site.
-                </h5>
+                </p>
                 <Container>
                     <Form className="Login-item">
                         <Form.Label> Login</Form.Label>
@@ -43,7 +43,13 @@ class Login extends Component {
                     <p className="jmodList"> This website uses your browser's localStorage to store your username, token, the list of jmods you follow,
                     and compare changes based on the last time you visited the 'Feed' page. This website's backend is hosted on heroku.com and frontend on netlify.com
                     Jmod Tracker does not send any information to third party advertisers.<br></br>
-                    For questions/concerns reach out to JmodTracker@altmails.com</p> 
+                    For questions/concerns reach out to JmodTracker@altmails.com<br></br>
+                    <br></br>
+                    <br></br>
+                       
+                    Heroku privacy policy: https://www.salesforce.com/company/privacy/
+                    Netlify privacy policy: https://www.netlify.com/privacy/
+                        </p> 
             </div>
         )
     }

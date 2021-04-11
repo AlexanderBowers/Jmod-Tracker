@@ -24,7 +24,7 @@ class FeedPage extends Component {
             this.getFeed(token, jmods)
          }
         else { 
-            this.props.history.push("/")
+            this.props.history.push("/login")
         } 
     }
 
