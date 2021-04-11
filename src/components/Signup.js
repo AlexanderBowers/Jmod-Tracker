@@ -42,7 +42,10 @@ class Signup extends Component {
                     </div>
                 </Form>
                 </Container>
-                
+                <p className="jmodList"> This website uses your browser's localStorage to store your username, token, the list of jmods you follow,
+                    and compare changes based on the last time you visited the 'Feed' page. This website's backend is hosted on heroku.com and frontend on netlify.com
+                    Jmod Tracker does not send any information to third party advertisers.<br></br>
+                    For questions/concerns reach out to JmodTracker@altmails.com</p> 
             </div>
         )
     }
