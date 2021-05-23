@@ -39,7 +39,6 @@ body {
 .App-link {
   color: #61dafb;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -59,9 +58,8 @@ body {
   background-image: url(osrs-backdrop.png);
   background-color: transparent;
   background-size: 100%;
-  
+  margin-top: 1rem;
   flex: 0 1 25%;
-  margin: 1rem 5rem;
   padding: 1rem;
 
   overflow-wrap: break-word;
